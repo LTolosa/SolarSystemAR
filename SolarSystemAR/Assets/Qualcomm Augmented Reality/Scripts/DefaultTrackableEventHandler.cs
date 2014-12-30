@@ -80,7 +80,7 @@ public class DefaultTrackableEventHandler : MonoBehaviour,
         {
             component.enabled = true;
         }
-
+        
         Debug.Log("Trackable " + mTrackableBehaviour.TrackableName + " found");
     }
 
