@@ -1,5 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.IO;
+using System.Collections.Generic;
 using UnityEngine.UI;
 
 public class DescSize : MonoBehaviour {
@@ -48,5 +50,40 @@ public class DescSize : MonoBehaviour {
 
         name.GetComponent<Text>().fontSize = (int)Mathf.Round(short_length * 0.04f);
         desc.GetComponent<Text>().fontSize = (int)Mathf.Round(short_length * 0.04f);
+    }
+
+    public void fillDesc(string name)
+    {
+        transform.FindChild("Name").GetComponent<Text>().text = name;
+
+        string path = Application.persistentDataPath + "Information\\" + name + ".txt";
+
+        StreamReader file = new StreamReader(path);
+        string sLine = "";
+        List<string> text = new List<string>();
+        text.Add("");
+        int i = 0;
+        while (sLine != null)
+        {
+            sLine = file.ReadLine();
+            if (sLine != null)
+            {
+                if (sLine.Equals("=="))
+                {
+                    text.Add("");
+                    i++;
+                }
+                else
+                    text[i] += sLine + " ";
+            }
+        }
+        int index = 0;
+        if (i > 0) index = Random.Range(0, i);
+
+        Debug.Log("Index: " + index + "\nlist length: " + text.Count);
+        Transform desc = transform.FindChild("Description");
+        desc.GetComponent<Text>().text = text[index];
+
+
     }
 }

@@ -20,7 +20,7 @@ public class SelectObject : MonoBehaviour {
 	// Use this for initialization
 	void Awake () {
         selectableMask = LayerMask.GetMask("Selectable");
-        selected = new GameObject("temp");
+        selected = null;
         selectedShader = Shader.Find("Diffuse");
         t = Time.time;
 	}
@@ -40,7 +40,7 @@ public class SelectObject : MonoBehaviour {
                 //Initialized selected if object wasn't previously selected.
                 if (selected != objhit.transform.gameObject)
                 {
-                    if (selected.name != "temp")
+                    if (!object.ReferenceEquals(null, selected))
                     {
                         //Returns original back to its color.
                         selected.renderer.material.shader = selectedShader;
@@ -55,13 +55,13 @@ public class SelectObject : MonoBehaviour {
                     selected = objhit.transform.gameObject;
                     selectedShader = selected.renderer.material.shader;
                     selected.renderer.material.shader = Shader.Find("Particles/Alpha Blended Premulitply");
-                    this.createDescription();
+                    this.createDescription(selected.name);
                     Debug.Log(selected.name);
                 }
                 else if (selected == objhit.transform.gameObject)
                 {
                     selected.renderer.material.shader = selectedShader;
-                    selected = new GameObject("temp");
+                    selected = null;
                     selectedShader = Shader.Find("Diffuse");
                     this.destroyDescription();
                 }
@@ -71,17 +71,16 @@ public class SelectObject : MonoBehaviour {
         }
 	}
 
-    void createDescription()
+    void createDescription(string name)
     {
-        Debug.Log("Creating Description!");
         infobox = Instantiate(info) as GameObject;
         infobox.transform.SetParent(canvas.transform, false);
+        infobox.GetComponent<DescSize>().fillDesc(name);
 
     }
 
     void destroyDescription()
     {
-        Debug.Log("Destorying Description");
         Destroy(infobox);
     }
 }
