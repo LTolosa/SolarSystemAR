@@ -47,16 +47,25 @@
   </ItemGroup>
   <ItemGroup>
      <Compile Include="Assets\Plugins\Editor\Unzip.js" />
+     <None Include="Assets\StreamingAssets\Information\Sun.txt" />
      <None Include="Assets\Qualcomm Augmented Reality\Shaders\VertexLitWithZ.shader" />
      <None Include="Assets\StreamingAssets\QCAR\SolarSystemAR.xml" />
      <None Include="Assets\license_3rdpartynotice.txt" />
      <None Include="Assets\Qualcomm Augmented Reality\Shaders\RenderVideoBackground.shader" />
+     <None Include="Assets\StreamingAssets\Information\Neptune.txt" />
      <None Include="Assets\readme_SDK.txt" />
+     <None Include="Assets\StreamingAssets\Information\Uranus.txt" />
+     <None Include="Assets\StreamingAssets\Information\Mercury.txt" />
      <None Include="Assets\Editor\QCAR\WebcamProfiles\profiles.xml" />
      <None Include="Assets\Qualcomm Augmented Reality\Shaders\DepthMask.shader" />
+     <None Include="Assets\StreamingAssets\Information\Saturn.txt" />
+     <None Include="Assets\StreamingAssets\Information\Jupiter.txt" />
+     <None Include="Assets\StreamingAssets\Information\Venus.txt" />
+     <None Include="Assets\StreamingAssets\Information\Earth.txt" />
      <None Include="Assets\Plugins\Android\AndroidManifest.xml" />
      <None Include="Assets\Qualcomm Augmented Reality\Shaders\BrightTexture.shader" />
      <None Include="Assets\Qualcomm Augmented Reality\Shaders\Text3D.shader" />
+     <None Include="Assets\StreamingAssets\Information\Mars.txt" />
      <None Include="Assets\StreamingAssets\QCAR\unity.txt" />
  <Reference Include="UnityEngine.UI">
  <HintPath>C:/Program Files (x86)/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/4.6.0/UnityEngine.UI.dll</HintPath>

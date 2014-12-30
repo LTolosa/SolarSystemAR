@@ -56,33 +56,40 @@ public class DescSize : MonoBehaviour {
     {
         transform.FindChild("Name").GetComponent<Text>().text = name;
 
-        string path = Application.persistentDataPath + "Information\\" + name + ".txt";
 
-        StreamReader file = new StreamReader(path);
-        string sLine = "";
-        List<string> text = new List<string>();
-        text.Add("");
-        int i = 0;
-        while (sLine != null)
+        string path       = System.IO.Path.Combine(Application.persistentDataPath,
+                                            "Information/" + name + ".txt");
+        string sourcePath = System.IO.Path.Combine(Application.streamingAssetsPath,
+                                            "Information/" + name + ".txt");
+
+        string fileText = "";
+
+        if (!System.IO.File.Exists(path) || (System.IO.File.GetLastWriteTimeUtc(sourcePath) > System.IO.File.GetLastWriteTimeUtc(path)))
         {
-            sLine = file.ReadLine();
-            if (sLine != null)
+   
+            if (sourcePath.Contains("://"))
             {
-                if (sLine.Equals("=="))
+
+                //Android
+                WWW www = new WWW(sourcePath);
+
+                while (!www.isDone) { }
+
+                if (string.IsNullOrEmpty(www.error))
+                    fileText = www.text;
+            }
+            else
+            {
+                Debug.Log(sourcePath + "\n" + System.IO.File.Exists(sourcePath));
+                if (System.IO.File.Exists(sourcePath))
                 {
-                    text.Add("");
-                    i++;
+                    StreamReader file = new StreamReader(sourcePath);
+                    fileText = file.ReadToEnd();
                 }
-                else
-                    text[i] += sLine + " ";
             }
         }
-        int index = 0;
-        if (i > 0) index = Random.Range(0, i);
 
-        Debug.Log("Index: " + index + "\nlist length: " + text.Count);
-        Transform desc = transform.FindChild("Description");
-        desc.GetComponent<Text>().text = text[index];
+        transform.FindChild("Description").GetComponent<Text>().text = fileText;
 
 
     }

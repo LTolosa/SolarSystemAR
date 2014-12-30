@@ -27,7 +27,7 @@ public class SelectObject : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () { 
-        if (/*true || */t + 1.0f < Time.time && /*Input.touchCount == 1*/ Input.GetMouseButtonDown(0))
+        if (/*true || */t + 0.5f < Time.time && /*Input.touchCount == 1*/ Input.GetMouseButtonDown(0))
         {
             t = Time.time;
             //Gets the raycast from the screen
@@ -67,6 +67,13 @@ public class SelectObject : MonoBehaviour {
                 }
 
 
+            }
+            else if (!object.ReferenceEquals(null, selected))
+            {
+                selected.renderer.material.shader = selectedShader;
+                selected = null;
+                selectedShader = Shader.Find("Diffuse");
+                this.destroyDescription();
             }
         }
 	}
