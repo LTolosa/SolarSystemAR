@@ -3,22 +3,20 @@ using System.Collections;
 
 public class SelectObject : MonoBehaviour {
 
-    public GameObject info;
-    public GameObject canvas;
-    GameObject infobox;
+    public GameObject info;     //Information pre-fab
+    public GameObject canvas;   //Canvas on the hierarchy
+    GameObject infobox;         //Newly created info box
 
-    Ray selectRay;
-    RaycastHit selectHit;
-    int selectableMask;
+    int selectableMask;         //Layer that has selectable objects
 
-    GameObject selected;
-    Material selectedMaterial;
-    Shader selectedShader;
+    GameObject selected;        //Previously selected GameObject
+    Shader selectedShader;      //Shader of previously selected object
 
-    float t;
+    float t;                    //Time variable
 
 	// Use this for initialization
 	void Awake () {
+        //Initialize variables
         selectableMask = LayerMask.GetMask("Selectable");
         selected = null;
         selectedShader = Shader.Find("Diffuse");
@@ -27,11 +25,12 @@ public class SelectObject : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () { 
-        if (/*true || */t + 0.5f < Time.time && /*Input.touchCount == 1*/ Input.GetMouseButtonDown(0))
+        //Only allow touch every 0.5 seconds
+        if (t + 0.5f < Time.time && Input.GetMouseButtonDown(0))
         {
             t = Time.time;
             //Gets the raycast from the screen
-            Ray touchRay = Camera.main.ScreenPointToRay(Input.mousePosition/*Input.GetTouch(0).position*/);
+            Ray touchRay = Camera.main.ScreenPointToRay(Input.mousePosition);
             RaycastHit objhit;
 
             //Checks if the ray hit any object
@@ -46,10 +45,6 @@ public class SelectObject : MonoBehaviour {
                         selected.renderer.material.shader = selectedShader;
                         destroyDescription();
                     }
-                    else
-                        Destroy(selected);
-                   
-                 
 
                     //Sets up new selected
                     selected = objhit.transform.gameObject;
@@ -60,6 +55,7 @@ public class SelectObject : MonoBehaviour {
                 }
                 else if (selected == objhit.transform.gameObject)
                 {
+                    //Removes selection if object is reselected
                     selected.renderer.material.shader = selectedShader;
                     selected = null;
                     selectedShader = Shader.Find("Diffuse");
@@ -70,6 +66,7 @@ public class SelectObject : MonoBehaviour {
             }
             else if (!object.ReferenceEquals(null, selected))
             {
+                //Removes selection if touch in empty area.
                 selected.renderer.material.shader = selectedShader;
                 selected = null;
                 selectedShader = Shader.Find("Diffuse");
@@ -78,6 +75,7 @@ public class SelectObject : MonoBehaviour {
         }
 	}
 
+    //Creates the info box and fills description
     void createDescription(string name)
     {
         infobox = Instantiate(info) as GameObject;
@@ -86,6 +84,7 @@ public class SelectObject : MonoBehaviour {
 
     }
 
+    //Destroys info box
     void destroyDescription()
     {
         Destroy(infobox);

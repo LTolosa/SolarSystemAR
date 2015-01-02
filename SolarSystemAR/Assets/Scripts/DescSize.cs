@@ -6,8 +6,8 @@ using UnityEngine.UI;
 
 public class DescSize : MonoBehaviour {
 
-    float sw;
-    float sh;
+    float sw;   //Screen width  variable
+    float sh;   //Screen height variable
 
     void OnGUI()
     {
@@ -16,6 +16,7 @@ public class DescSize : MonoBehaviour {
         int sw = Screen.width;
         int sh = Screen.height;
 
+        //Shorter length of screen width and height
         int short_length = sw < sh ? sw : sh;
 
         RectTransform rect = this.GetComponent<RectTransform>();
@@ -54,42 +55,62 @@ public class DescSize : MonoBehaviour {
 
     public void fillDesc(string name)
     {
+        //Apply name to top of description
         transform.FindChild("Name").GetComponent<Text>().text = name;
 
-
-        string path       = System.IO.Path.Combine(Application.persistentDataPath,
-                                            "Information/" + name + ".txt");
+        //Path of information text files
         string sourcePath = System.IO.Path.Combine(Application.streamingAssetsPath,
                                             "Information/" + name + ".txt");
-
+        //String to contain the text of the file
         string fileText = "";
 
-        if (!System.IO.File.Exists(path) || (System.IO.File.GetLastWriteTimeUtc(sourcePath) > System.IO.File.GetLastWriteTimeUtc(path)))
+        //Check for JAR files on android
+        if (sourcePath.Contains("://"))
         {
-   
-            if (sourcePath.Contains("://"))
+            //Android
+            //Use WWW to read file.
+            WWW www = new WWW(sourcePath);
+
+            while (!www.isDone) { }
+
+            //Copy file to fileText string
+            if (string.IsNullOrEmpty(www.error))
+                fileText = www.text;
+        }
+        else
+        {
+            //For everything else
+            if (System.IO.File.Exists(sourcePath))
             {
-
-                //Android
-                WWW www = new WWW(sourcePath);
-
-                while (!www.isDone) { }
-
-                if (string.IsNullOrEmpty(www.error))
-                    fileText = www.text;
-            }
-            else
-            {
-                Debug.Log(sourcePath + "\n" + System.IO.File.Exists(sourcePath));
-                if (System.IO.File.Exists(sourcePath))
-                {
-                    StreamReader file = new StreamReader(sourcePath);
-                    fileText = file.ReadToEnd();
-                }
+                //Read file and copy to file text
+                StreamReader file = new StreamReader(sourcePath);
+                fileText = file.ReadToEnd();
             }
         }
 
-        transform.FindChild("Description").GetComponent<Text>().text = fileText;
+        //Create a list of all possible descriptions 
+        List<string> info = new List<string>();
+
+        //Iterate through each description addin to list.
+        while(fileText.Contains("=="))
+        {
+            //Find '==' signs that separate descriptions and add to list
+            int index = fileText.IndexOf("==");
+            info.Add(fileText.Substring(0, index));
+            //Remove everything added to list      
+            fileText = fileText.Remove(0, index);
+
+            //Cuts out the '==' and determines if there is a new line character
+            int cut = fileText.Contains("\n") ? 4 : 2;
+            fileText = fileText.Remove(0, cut);
+        }
+        if (fileText != "") info.Add(fileText);
+
+
+        //Choose randomly to display on description
+        //Smarter way to do this later?
+        transform.FindChild("Description").GetComponent<Text>().text =
+                                         info[Random.Range(0, info.Count)];
 
 
     }
