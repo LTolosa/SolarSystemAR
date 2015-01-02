@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class OrbitPlanet : MonoBehaviour {
 
@@ -11,6 +12,8 @@ public class OrbitPlanet : MonoBehaviour {
     float angle;                        //Angle the object is at.
     float angularSpeed;                 //Angular speed in rad/s normalized by earthOrbit;
     float radius;                       //Radius of the circular orbit. CIRCULAR ORBITS.
+
+    Queue<GameObject> trail;
 
 
     const float earthOrbit = 365.256363004f;    //Number of days for earth's orbit
@@ -28,6 +31,7 @@ public class OrbitPlanet : MonoBehaviour {
         radius = Mathf.Sqrt(Mathf.Pow(transform.localPosition.x, 2) 
                           + Mathf.Pow(transform.localPosition.y, 2)
                           + Mathf.Pow(transform.localPosition.z, 2));
+        trail = new Queue<GameObject>();
 	}
 	
 	// Update is called once per frame
@@ -41,6 +45,16 @@ public class OrbitPlanet : MonoBehaviour {
             transform.localPosition = new Vector3(radius * Mathf.Cos(angle), 
                                                   transform.localPosition.y, 
                                                   radius * Mathf.Sin(angle));
+            /*
+            GameObject g = GameObject.CreatePrimitive(PrimitiveType.Sphere);
+            g.transform.SetParent(this.transform, false);
+            g.transform.position = transform.position;
+            g.transform.localScale = new Vector3(0.5f, 0.5f, 0.5f);
+            trail.Enqueue(g);
+             */ 
         }
+
+        //if (trail.Count > 100)
+        //    trail.Dequeue();
 	}
 }

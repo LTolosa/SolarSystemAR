@@ -5,8 +5,6 @@ Project("{4EC0E96E-9B0A-1B96-9695-91C34D4D56BA}") = "SolarSystemAR", "Assembly-C
 EndProject
 Project("{4EC0E96E-9B0A-1B96-9695-91C34D4D56BA}") = "SolarSystemAR", "Assembly-CSharp-Editor.csproj", "{1A933BEA-647A-259B-711C-332B1BA2B527}"
 EndProject
-Project("{4EC0E96E-9B0A-1B96-9695-91C34D4D56BA}") = "SolarSystemAR", "Assembly-UnityScript.unityproj", "{B34E1F71-510B-0922-3955-A286DB1750B2}"
-EndProject
 Project("{4EC0E96E-9B0A-1B96-9695-91C34D4D56BA}") = "SolarSystemAR", "Assembly-UnityScript-Editor-firstpass.unityproj", "{909F5889-6A17-327B-1DA6-456EFBD8C2F6}"
 EndProject
 Global
@@ -23,10 +21,6 @@ Global
 		{1A933BEA-647A-259B-711C-332B1BA2B527}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1A933BEA-647A-259B-711C-332B1BA2B527}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1A933BEA-647A-259B-711C-332B1BA2B527}.Release|Any CPU.Build.0 = Release|Any CPU
-		{B34E1F71-510B-0922-3955-A286DB1750B2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{B34E1F71-510B-0922-3955-A286DB1750B2}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{B34E1F71-510B-0922-3955-A286DB1750B2}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{B34E1F71-510B-0922-3955-A286DB1750B2}.Release|Any CPU.Build.0 = Release|Any CPU
 		{909F5889-6A17-327B-1DA6-456EFBD8C2F6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{909F5889-6A17-327B-1DA6-456EFBD8C2F6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{909F5889-6A17-327B-1DA6-456EFBD8C2F6}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -35,7 +29,7 @@ Global
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
-																																																				GlobalSection(MonoDevelopProperties) = preSolution
+																																																					GlobalSection(MonoDevelopProperties) = preSolution
 		StartupItem = Assembly-CSharp.csproj
 		Policies = $0
 		$0.TextStylePolicy = $1

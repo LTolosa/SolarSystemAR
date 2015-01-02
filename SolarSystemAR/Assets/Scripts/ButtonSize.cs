@@ -24,22 +24,31 @@ public class ButtonSize : MonoBehaviour {
 
         //Determines where the buttons are located
         //Animate button in the bottom right, Speed button in the bottom left.
-        float leftS = this.gameObject.tag == "Animate" ? 0.8f : 0.1f;
+        float leftS = this.gameObject.tag == "Animate" ? 0.8f : 
+                      this.gameObject.tag == "Speed"   ? 0.1f :
+                      0.4f; ;
         float topS  = 0.15f;
 
         //Determines the scale of the buttons' height and width
         //Animate button is short and wide, Speed button is closer to a square
-        float widthS = this.gameObject.tag == "Animate" ? long_length * 0.2f : short_length * 0.15f;
-        float heightS = short_length * 0.1f;
+        float widthS = this.gameObject.tag == "Animate" ? long_length * 0.2f : 
+                       this.gameObject.tag == "Speed"   ? short_length * 0.15f :
+                       sw * 0.4f;
+        float heightS = (this.gameObject.tag == "Animate" || this.gameObject.tag == "Speed") ? 
+                         short_length * 0.1f :
+                         short_length * 0.05f;
   
         //Places and scales button
         r.position = new Vector3(sw * leftS, sh * topS, r.position.z);
         r.sizeDelta = new Vector2(widthS, heightS);
 
-        //Scales the text
-        Text text = transform.FindChild("Text").GetComponent<Text>();
+        if (this.gameObject.tag == "Animate" || this.gameObject.tag == "Speed")
+        {
+            //Scales the text
+            Text text = transform.FindChild("Text").GetComponent<Text>();
 
-        text.fontSize = (int) Mathf.Round(short_length * 0.04f);
+            text.fontSize = (int)Mathf.Round(short_length * 0.04f);
+        }
 
        
 

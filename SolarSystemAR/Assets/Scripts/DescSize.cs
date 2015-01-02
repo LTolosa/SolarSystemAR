@@ -106,11 +106,10 @@ public class DescSize : MonoBehaviour {
         }
         if (fileText != "") info.Add(fileText);
 
-
         //Choose randomly to display on description
         //Smarter way to do this later?
         transform.FindChild("Description").GetComponent<Text>().text =
-                                         info[Random.Range(0, info.Count)];
+                                             info[Random.Range(0, info.Count)];
 
 
     }

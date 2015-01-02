@@ -30,5 +30,10 @@ public class ButtonActions : MonoBehaviour {
 
     }
 
+    public void sliderZoom(float s)
+    {
+        this.transform.localScale = new Vector3(s, s, s);
+    }
+
 
 }
