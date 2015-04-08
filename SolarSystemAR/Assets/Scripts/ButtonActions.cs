@@ -15,7 +15,7 @@ public class ButtonActions : MonoBehaviour {
         OrbitPlanet.orbit = !OrbitPlanet.orbit; //Makes orbit false
     }
 
-    public void speedChange(int scale)
+    public void speedChange()
     {
         //Doubles speed
         float newSpeed = 2 * speed;

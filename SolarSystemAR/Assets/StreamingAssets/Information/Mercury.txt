@@ -1,6 +1,11 @@
-This is Mercury! #1
+The gravity on Mercury is 37.5% of the gravity that Earth has. So a 100 pound person would weight only 38 pounds!
 ==
-This is Mercury! #2
+There is almost no atmosphere! It does have small traces Hydrogen, Oxygen, Sodium, Potassium, and Argon.
 ==
-This is Mercury! #3
+It takes Mercury less than 88 days to orbit the Sun.
 ==
+Mercury is the most iron rich planet in the Solar System. It has an iron core just like Earth.
+==
+Mercury has a very slow rotation on its axis. One full rotation on Mercury is about 59 Earth days.
+==
+One full day on Mercury, the time interval between one sunrise and the next one, lasts 180 Earth days since it travels so fast around the sun and so slow on its axis.

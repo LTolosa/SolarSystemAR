@@ -49,7 +49,7 @@ public class SelectObject : MonoBehaviour {
                     //Sets up new selected
                     selected = objhit.transform.gameObject;
                     selectedShader = selected.renderer.material.shader;
-                    selected.renderer.material.shader = Shader.Find("Particles/Alpha Blended Premulitply");
+                    selected.renderer.material.shader = Shader.Find("Particles/Additive");
                     this.createDescription(selected.name);
                     Debug.Log(selected.name);
                 }

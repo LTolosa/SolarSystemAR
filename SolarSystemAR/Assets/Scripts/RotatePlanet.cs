@@ -9,7 +9,9 @@ public class RotatePlanet : MonoBehaviour {
 	
 	void Update () {
         //Only rotate around y axis
-        this.transform.Rotate(0,speed *  360f * RotationSpeed/earthRot * Time.deltaTime, 0);
+        this.transform.Rotate(0,
+                              speed *  360f * RotationSpeed/earthRot * Time.deltaTime, 
+                              0);
 	
 	}
 }

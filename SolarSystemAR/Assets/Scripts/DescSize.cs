@@ -101,14 +101,14 @@ public class DescSize : MonoBehaviour {
             fileText = fileText.Remove(0, index);
 
             //Cuts out the '==' and determines if there is a new line character
-            int cut = fileText.Contains("\n") ? 4 : 2;
+            int cut = fileText.Contains("\n") ? 3 : 2;
             fileText = fileText.Remove(0, cut);
         }
         if (fileText != "") info.Add(fileText);
 
         //Choose randomly to display on description
         //Smarter way to do this later?
-        transform.FindChild("Description").GetComponent<Text>().text =
+        transform.FindChild("Description").GetComponent<Text>().text = //Shader.Find("Mobile/Particles/Additive").isSupported?"True":"False";
                                              info[Random.Range(0, info.Count)];
 
 

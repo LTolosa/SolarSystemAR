@@ -50,8 +50,6 @@ public class ButtonSize : MonoBehaviour {
             text.fontSize = (int)Mathf.Round(short_length * 0.04f);
         }
 
-       
-
     }
 
     public void updateSpeed()
